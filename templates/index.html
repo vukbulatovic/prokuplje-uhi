@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analiza urbanog ostrva toplote – Prokuplje</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- KONTROLNI PANEL -->
+  <div id="control-panel">
+    <h2>🌡 Analiza urbanog ostrva toplote</h2>
+
+    <label>Početak (YYYY-MM-DD):</label>
+    <input type="text" id="start-date" value="2025-06-01">
+
+    <label>Kraj (YYYY-MM-DD):</label>
+    <input type="text" id="end-date" value="2025-08-31">
+
+    <label>Maks. pokrivenost oblacima: <span id="cloud-val">30</span>%</label>
+    <input type="range" id="cloud-slider" min="5" max="80" value="30" step="5">
+
+    <button id="run-btn">▶ Pokreni analizu</button>
+
+    <div id="status">Status: čeka pokretanje...</div>
+
+    <div id="layer-toggles" style="display:none">
+      <p style="font-weight:600; margin: 12px 0 6px;">Slojevi:</p>
+      <label><input type="checkbox" id="tog-zones" checked> Zone ostrva toplote</label>
+      <label><input type="checkbox" id="tog-lst">   Temperatura površine (LST)</label>
+      <label><input type="checkbox" id="tog-uhi">   Intenzitet UHI</label>
+      <label><input type="checkbox" id="tog-ndvi">  Vegetacioni indeks (NDVI)</label>
+    </div>
+  </div>
+
+  <!-- STATISTIKE PANEL -->
+  <div id="stats-panel" style="display:none">
+    <h3>📊 Zone ostrva toplote – Prokuplje</h3>
+    <canvas id="zone-chart" width="280" height="260"></canvas>
+  </div>
+
+  <!-- LST GRAFIK PANEL -->
+  <div id="lst-panel" style="display:none">
+    <div id="lst-panel-header">
+      <span>📈 Temperatura površine kroz vreme</span>
+      <button id="lst-close">✕</button>
+    </div>
+    <div id="lst-info">Klikni na mapu da učitaš grafik.</div>
+    <canvas id="lst-chart" width="380" height="200"></canvas>
+  </div>
+
+  <!-- MAPA -->
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

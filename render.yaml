@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: prokuplje-uhi
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: EE_SERVICE_ACCOUNT
+        sync: false
+      - key: EE_PRIVATE_KEY
+        sync: false
