@@ -3,10 +3,9 @@
 // ==========================
 var map = L.map('map').setView([43.2333, 21.5833], 13);
 
-L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-  maxZoom: 20,
-  subdomains: ['mt0','mt1','mt2','mt3'],
-  attribution: 'Google Hybrid'
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
 // ==========================

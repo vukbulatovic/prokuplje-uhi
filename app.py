@@ -3,7 +3,7 @@ import ee
 import json
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 # Inicijalizacija GEE
 def init_gee():
