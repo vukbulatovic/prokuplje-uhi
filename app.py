@@ -10,15 +10,13 @@ def init_gee():
     key_path = 'ee-vubulatovic-26e58a89705c.json'
     if os.path.exists(key_path):
         # Lokalno - koristi JSON fajl
-        with open(key_path) as f:
-            key_data = json.load(f)
-        service_account = key_data['client_email']
+        service_account = 'prokuplje-uhi-sa@ee-vubulatovic.iam.gserviceaccount.com'
         credentials = ee.ServiceAccountCredentials(service_account, key_path)
     else:
         # Render - koristi environment variable
-        key_data = json.loads(os.environ.get('EE_PRIVATE_KEY', '{}'))
+        key_json = os.environ.get('EE_PRIVATE_KEY', '{}')
         service_account = os.environ.get('EE_SERVICE_ACCOUNT')
-        credentials = ee.ServiceAccountCredentials(service_account, key_data=key_data)
+        credentials = ee.ServiceAccountCredentials(service_account, key_data=key_json)
     
     ee.Initialize(credentials, project='ee-vubulatovic')
 
